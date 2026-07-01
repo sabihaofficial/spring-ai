@@ -52,6 +52,7 @@ public class OpenAIServiceImpl implements OpenAIService {
         //PromptTemplate promptTemplate =  new PromptTemplate("what is the capital of : " + req.countryOrState()+ " ?");
         PromptTemplate promptTemplate = new PromptTemplate(getCapitalPrompt);
         Prompt prompt = promptTemplate.create(Map.of("countryOrState", req.countryOrState()));
+        System.out.println("Prompt: " + getCapitalPrompt);
         ChatResponse response = chatModel.call(prompt);
         return new Answer(Objects.requireNonNull(response.getResult()).getOutput().getText());
     }
